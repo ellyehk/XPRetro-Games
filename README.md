@@ -28,3 +28,22 @@ Si deseas obtener una copia local del código fuente para desarrollo o contribuc
 
 ### 📥 Clonar el Repositorio
 git clone [https://github.com/ellyehk/XPRetro-Games]
+
+📂 Estructura del Proyecto
+├── Games/                   # 🖥️ Contiene el código o configuraciones de los juegos.
+├── pages/                   # 📄 Archivos principales de la web.
+│   ├── contacto.html
+│   ├── index.html           # Página principal del sitio.
+│   ├── juego.html
+│   ├── nosotros.html
+│   ├── perfil.html
+│   ├── politica.html
+│   ├── terminos.html
+│   └── usuario.html
+└── public/                  # 🖼️ Recursos estáticos e imágenes.
+    ├── imagenes/            # Imágenes de la web.
+    ├── portadas/            # Portadas de los juegos.
+    ├── posters/             # Posters promocionales.
+    ├── logos/
+    ├── iconos/
+    └── perfil/              # Imágenes de perfil de usuarios.
