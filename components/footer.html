@@ -1,0 +1,89 @@
+<style>
+    footer {
+        background-color: #140b22;
+        text-align: center;
+    }
+
+    footer p {
+        margin-bottom: 8px;
+        font-weight: 400;
+        font-family: "Albert Sans", sans-serif;
+        color: #cfced3;
+        font-size: 1rem;
+    }
+
+    footer a {
+        font-family: "Albert Sans", sans-serif;
+        color: #e1e1e3a6;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 8px;
+        white-space: nowrap;
+        font-size: 1rem;
+    }
+
+    .titulo {
+        color: #cfced3;
+        font-weight: 600;
+        font-family: "Albert Sans", sans-serif;
+        font-size: 1.2rem;
+    }
+
+    footer a:hover {
+        color: #ffffff;
+    }
+
+    footer a:active,
+    footer a:visited {
+        color: #b3b3b3;
+    }
+
+    .social-icons a {
+        margin: 0 6px;
+    }
+
+    @media (max-width: 768px) {
+        footer p,
+        footer a,
+        .titulo {
+            font-size: 0.875rem; /* texto más pequeño */
+        }
+
+        .social-icons i {
+            font-size: 1.5rem; /* iconos más pequeños */
+        }
+    }
+</style>
+
+<footer>
+    <div class="container-fluid">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <!-- Logo -->
+                <div class="col-12 col-md-3 mb-4">
+                    <img src="../public/Img/Logos/logo.png" width="120px">
+                </div>
+
+                <!-- Texto y enlaces -->
+                <div class="col-12 col-md-6 mb-4">
+                    <p class="titulo">Retro no es viejo. Es poder jugar como antes, sin límites.</p>
+                    <p>
+                        <a href="../pages/terminos.html">Términos y condiciones</a> |
+                        <a href="../pages/contacto.html">Contacto</a> |
+                        <a href="../pages/politica.html">Política de privacidad</a>
+                    </p>
+                    <p class="text-secondary">© 2025 Xp Retro Game | Revive la era XP jugando</p>
+                </div>
+
+                <!-- Iconos -->
+                <div class="col-12 col-md-3 mb-4 social-icons">
+                    <p class="titulo">Nosotros</p>
+                    <a href="#"><i class="bi bi-github text-white fs-2"></i></a>
+                    <a href="#"><i class="bi bi-linkedin text-white fs-2"></i></a>
+                    <a href="#"><i class="bi bi-telephone text-white fs-2"></i></a>
+                    <a href="#"><i class="bi bi-envelope text-white fs-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

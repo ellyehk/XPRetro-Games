@@ -1,0 +1,247 @@
+.albert-sans {
+  font-family: "Albert Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  /* Puedes usar 400, 500, 700 según lo que importaste */
+  font-style: normal;
+}
+
+body {
+  background-color: #211138;
+}
+
+.emphasis-bg {
+  background-color: #311c54;
+}
+
+.table-container {
+  background-color: #291941;
+}
+
+.table-bg {
+  background-color: #362650;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "albert-sans", sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+p {
+  font-family: "Albert Sans", sans-serif;
+  font-weight: 400;
+  color: white;
+}
+
+.gallery img {
+  flex: 1;
+  object-fit: cover;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.button-bg {
+  background-color: #4715a3;
+  color: white;
+  border-radius: 20px;
+  width: auto;
+}
+
+button:hover {
+  color: #cdadff !important;
+}
+
+.podium-container {
+  min-height: 350px;
+}
+
+.podium-base {
+  width: 100px;
+  border-radius: 5px 5px 0 0;
+  margin-top: 5px;
+}
+
+.gold {
+  background-color: #FFD700;
+  height: 130px;
+}
+
+.silver {
+  background-color: #C0C0C0;
+  height: 110px;
+}
+
+.bronze {
+  background-color: #CD7F32;
+  height: 90px;
+}
+
+.podium-first {
+  margin-top: 0;
+}
+
+.podium-second {
+  margin-top: 20px;
+}
+
+.podium-third {
+  margin-top: 40px;
+}
+
+.ranking-img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+}
+
+table {
+  background-color: black;
+}
+
+@media (max-width: 767.98px) {
+  .podium-container {
+    display: none;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table-bg {
+  background-color: #6f42c1 !important;
+  /* Asumo morado, ajusta si tienes clase propia */
+}
+
+@media (max-width: 576px) {
+
+  .table th:nth-child(3),
+  .table td:nth-child(3) {
+    display: none;
+  }
+}
+
+.carousel-item-custom {
+  background-color: #2d1b45;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 90px;
+  height: 200px;
+  margin-right: 5rem;
+}
+
+.carousel-text {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.carousel-img {
+  flex: 1;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.carousel-recomendados {
+  position: relative;
+  padding: 30px 20px;
+  border-radius: 20px;
+  margin: 10px auto;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.carousel-recomendados h4 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.recomendado-carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.recomendado-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.grupo {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 15px;
+  scroll-snap-align: start;
+}
+
+.grande {
+  width: 300px;
+  height: 240px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.chicos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chico {
+  width: 140px;
+  height: 112px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.grande img,
+.chico img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.grande:hover,
+.chico:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+
+.btn-carousel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background-color: rgba(78, 54, 80, 0.3);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.btn-carousel:hover {
+  background-color: rgba(71, 62, 73, 0.6);
+}
+
+.btn-left {
+  left: 5px;
+}
+
+.btn-right {
+  right: 5px;
+}

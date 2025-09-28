@@ -1,0 +1,777 @@
+<style>
+    .navbar {
+        background-color: #16062d;
+    }
+
+    .navbar .navbar-brand img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .search-container {
+        flex: 1;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .search {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 28px;
+        background-color: #26223a;
+        transition: background 0.25s;
+        width: 100%;
+    }
+
+    .search:focus-within {
+        background-color: #2f2a47;
+    }
+
+    .search-input {
+        font-size: 15px;
+        font-weight: 500;
+        font-family: "Albert Sans", sans-serif;
+        color: #c9c9c9;
+        outline: none;
+        border: none;
+        background: transparent;
+        flex: 1;
+        padding-left: 10px;
+    }
+
+    .button-bg {
+        background-color: #4715a3;
+        color: white;
+        border-radius: 20px;
+        padding: 6px 16px;
+        white-space: nowrap;
+    }
+
+    .modal-content {
+        background-color: #1e0033;
+        border-radius: 1rem;
+    }
+
+    .btnclose-bg {
+        background-color: #1877f2;
+        color: #fff;
+    }
+
+    .facebook-btn,
+    .google-btn {
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 16px;
+        font-weight: 500;
+    }
+
+    .google-btn {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .facebook-btn {
+        background-color: #0080FF;
+        color: #fff;
+    }
+
+    .form-input {
+        border-radius: 15px;
+        padding: 10px 16px;
+        vertical-align: middle;
+        background-color: #26223A;
+        border-color: #E0DAF6;
+        color: white;
+        font-weight: 700;
+    }
+
+    .modal-btn {
+        background-color: #5015BD;
+        color: white;
+        border-radius: 50px;
+        padding: 15px 16px;
+        font-weight: 500;
+        border: none;
+    }
+
+    #toggleIcon {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    @media (max-width: 992px) {
+        .search-container {
+            max-width: 400px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .search-container {
+            display: none;
+        }
+
+        .navbar .navbar-brand img {
+            width: 45px;
+            height: 45px;
+        }
+
+        .button-bg {
+            padding: 4px 12px;
+            font-size: 14px;
+        }
+
+        .bi-heart,
+        .bi-list {
+            font-size: 1.4rem;
+        }
+    }
+</style>
+
+<!-- NAVBAR LOGGED -->
+<template id="navbar-logged">
+    <nav class="navbar navbar-expand-lg fixed-top mt-0">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <!-- LOGO -->
+                <a href="/pages/index.html" class="navbar-brand">
+                    <img src="../public/Img/Logos/logo.png" alt="Logo">
+                </a>
+                <!-- SIDEBAR -->
+                <a id="menu-toggle">
+                    <i class="bi bi-list text-white fs-2" data-bs-toggle="collapse" data-bs-target="#collapseOne"></i>
+                </a>
+            </div>
+            <!-- SEARCH BAR -->
+            <div class="search-container d-none d-sm-flex mx-auto">
+                <form class="search">
+                    <input class="search-input" type="search" placeholder="search">
+                    <a href="#"><i class="bi bi-search text-white fs-5 pe-2"></i></a>
+                </form>
+            </div>
+            <!-- FAVORITS -->
+            <div class="d-flex align-items-center gap-3">
+                <a href="#"><i class="bi bi-heart text-white fs-4" data-bs-toggle="modal"
+                        data-bs-target="#favoritos"></i></a>
+                <!-- FOTO DE PERFIL -->
+                <img id="navbar-avatar" src="../public/Img/Perfil/Perfil/portrait1.png" alt="portrait"
+                    style="width: 45px; object-fit: cover; cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#profileModal">
+            </div>
+        </div>
+    </nav>
+</template>
+
+<!-- NAVBAR NO LOGIN -->
+<template id="navbar-nologin">
+    <nav class="navbar navbar-expand-lg fixed-top mt-0">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="/pages/index.html" class="navbar-brand">
+                    <img src="../public/Img/Logos/logo.png" alt="Logo">
+                </a>
+                <a id="menu-toggle">
+                    <i class="bi bi-list text-white fs-2" data-bs-toggle="collapse" data-bs-target="#collapseOne"></i>
+                </a>
+            </div>
+            <div class="search-container d-none d-sm-flex mx-auto">
+                <form class="search">
+                    <input class="search-input" type="search" placeholder="search">
+                    <a href="#"><i class="bi bi-search text-white fs-5 pe-2"></i></a>
+                </form>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn button-bg" data-bs-toggle="modal" data-bs-target="#loginsignupModal">Iniciar
+                    Sesión</button>
+            </div>
+        </div>
+    </nav>
+</template>
+
+<!-- MODAL FAVORITOS -->
+<div class="modal fade" id="favoritos">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+            <div class="modal-header border-0 mt-2 mb-0 px-2 d-flex align-items-center justify-content-between">
+                <div style="width: 2rem;"></div>
+                <h5 class="mt-3 text-center flex-grow-1">Favoritos</h5>
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+            <!-- Aquí se insertarán dinámicamente las portadas -->
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL PERFIL -->
+<div class="modal fade" id="profileModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+            <!-- ENCABEZADO + BOTON CERRAR -->
+            <div class="modal-header border-0 mt-2 mb-2 px-2 d-flex align-items-center justify-content-between">
+                <div style="width: 2rem;"></div>
+                <h5 class="mt-3 text-center flex-grow-1">Iniciar Sesión / Registrarse</h5>
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+
+            <!-- FOTO DE PERFIL (centrada) -->
+            <div class="d-flex justify-content-center mb-3">
+                <img id="modal-avatar" src="../public/Img/Perfil/Perfil/portrait1.png" alt="portrait"
+                    style="width: 80px; height: 80px; object-fit: cover;" class="rounded-circle border border-white">
+            </div>
+
+            <!-- VER PERFIL -->
+            <button id="verPerfilBtn" class="btn modal-btn w-100 mb-4">Ver perfil</button>
+
+            <script>
+                document.getElementById('verPerfilBtn').addEventListener('click', function () {
+                    window.location.href = '../pages/usuario.html';
+                });
+            </script>
+
+            <!-- BOTON CERRAR SESION -->
+            <button id="cerrarSesionBtn" class="btn modal-btn w-100 mb-4">Cerrar sesión</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL INICIO -->
+<div class="modal fade" id="loginsignupModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+            <!-- ENCABEZADO + BOTON CERRAR -->
+            <div class="modal-header border-0 mt-2 mb-2 px-2 d-flex align-items-center justify-content-between">
+                <div style="width: 2rem;"></div>
+                <!-- TITULO -->
+                <h5 class="mt-3 text-center flex-grow-1">Iniciar Sesión / Registrarse</h5>
+                <!-- BOTON CERRAR -->
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+
+            <!-- LOGIN CON FACEBOOK -->
+            <button class="facebook-btn w-100 mb-4">
+                <img src="../public/Img/Logos/facebookLogo.webp" width="30px" class="me-3">Continuar con Facebook
+            </button>
+
+            <!-- SEPARADOR -->
+            <div class="text-center mb-3">
+                <h5 class="text-nowrap">—————— O ——————</h5>
+            </div>
+
+            <!-- EMAIL INPUT -->
+            <input id="emailInput" type="email" class="form-input" placeholder="Correo"
+                oninput="verificarCorreo(this.value)">
+
+            <!-- MENSAJE CORREO INVALIDO -->
+            <small id="correoInvalido" class="text-danger d-none ms-2">Este correo no está registrado.</small>
+
+            <!-- REGISTRARSE -->
+            <small class="mb-4 ms-3">
+                <a href="#" data-bs-target="#registerModal" data-bs-toggle="modal"
+                    class="text-white text-decoration-none">No tengo una cuenta</a>
+            </small>
+
+            <!-- BOTON CONTINUAR -->
+            <button id="continuarBtn" class="btn modal-btn w-100 mb-4" data-bs-toggle="modal"
+                data-bs-target="#loginModal" disabled>Continuar</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL LOGIN -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+            <!-- ENCABEZADO CON BOTÓN DE REGRESAR Y CERRAR -->
+            <div class="modal-header border-0 mt-2 mb-2 px-2 d-flex align-items-center justify-content-between">
+
+                <!-- BOTON DE REGRESAR -->
+                <a href="#" class="text-white" aria-label="Regresar" data-bs-toggle="modal"
+                    data-bs-target="#loginsignupModal" id="btnRegresarLogin">
+                    <i class="bi bi-arrow-left fs-4"></i>
+                </a>
+
+                <!-- TITULO -->
+                <h5 class="m-0 text-center flex-grow-1">Introduce tu contraseña</h5>
+
+                <!-- BOTON DE CERRAR -->
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+
+            <!-- EMAIL MOSTRADO -->
+            <input id="emailPreview" type="email" class="mb-3 text-start ps-4 form-input text-white" readonly>
+
+            <!-- CONTRASEÑA -->
+            <input id="passwordInput" type="password" class="mb-2 text-start ps-4 form-input" placeholder="Contraseña">
+
+            <!-- MENSAJE -->
+            <small id="loginErrorMsg" class="text-danger d-none"></small>
+
+            <!-- CHECKBOX Y ENLACE -->
+            <div class="d-flex justify-content-between align-items-center mb-4 text-white-50 mx-2">
+                <!-- RECORDAR CONTRASEÑA -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="rememberMeCheckbox">
+                    <label class="form-check-label" for="rememberMeCheckbox">Recordarme</label>
+                </div>
+                <!-- REGISTRARSE -->
+                <a href="#" class="text-decoration-none text-white-50" data-bs-target="#passwordRecovery"
+                    data-bs-toggle="modal">¿Has olvidado tu contraseña?</a>
+            </div>
+
+            <!-- INICIAR SESION -->
+            <button id="loginBtn" class="btn modal-btn w-100 mb-3">Iniciar sesión</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL REGISTERED -->
+<div class="modal fade" id="registeredModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+            <!-- ENCABEZADO + BOTON CERRAR -->
+            <div class="modal-header border-0 mt-2 mb-2 px-2 d-flex align-items-center justify-content-between">
+                <div style="width: 2rem;"></div>
+                <!-- TITULO -->
+                <h5 class="mt-3 text-center flex-grow-1">Usuario</h5>
+                <!-- BOTON CERRAR -->
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+
+            <!-- IMAGEN DE PERFIL -->
+            <div class="text-center my-3">
+                <img id="imagenPerfilUsuario" src="" class="rounded-circle border border-white"
+                    style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
+
+            <!-- Info -->
+            <div class="my-2 text-center text-white">
+                <p>Te hemos enviado un correo electrónico para verificar tu cuenta.
+                    Comprueba tu carpeta de SPAM si no llega a tu bandeja de entrada.</p>
+            </div>
+
+            <!-- BOTON CONTINUAR -->
+            <button id="registeredContinuar" class="btn modal-btn w-100 mb-4" data-bs-dismiss="modal">Continuar</button>
+
+            <!-- BOTON PERSONALIZAR -->
+            <button id="registeredPersonalizar" class="btn modal-btn w-100 mb-4" data-bs-toggle="modal"
+                data-bs-target="#personalizarUsuario">Personalizar Perfil</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL REGISTRO -->
+<div class="modal fade" id="registerModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+
+            <!-- ENCABEZADO CON BOTÓN DE REGRESAR Y CERRAR -->
+            <div class="modal-header border-0 mt-2 mb-2 px-2 d-flex align-items-center justify-content-between">
+
+                <!-- BOTON DE REGRESAR -->
+                <a href="#" class="text-white" aria-label="Regresar" data-bs-toggle="modal"
+                    data-bs-target="#loginsignupModal">
+                    <i class="bi bi-arrow-left fs-4"></i>
+                </a>
+
+                <!-- TITULO -->
+                <h5 class="m-0 text-center flex-grow-1">Crear una cuenta</h5>
+
+                <!-- BOTON DE CERRAR -->
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+
+            <!-- FOTO DE PORTADA -->
+            <div class="d-flex justify-content-center mb-3">
+                <img id="mainImage" src="../public/Img/Perfil/Perfil/portrait1.png" alt="imagen" class="rounded-circle"
+                    style="width: 100px; height: 100px; object-fit: cover; cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#seleccionarImagenModal">
+            </div>
+
+            <!-- FORMULARIO REGISTRO -->
+            <form id="registerForm">
+                <!-- Imagen perfil -->
+                <input type="hidden" id="selectedImageId" name="foto_perfil_id" value="1">
+
+                <!-- Usuario -->
+                <input type="text" id="register-user" name="username" class="mb-2 text-start ps-4 form-input w-100"
+                    placeholder="Usuario" required>
+
+                <!-- Email -->
+                <input type="email" id="register-email" name="email" class="mb-2 text-start ps-4 form-input w-100"
+                    placeholder="Correo electrónico" required>
+
+                <!-- Contraseña -->
+                <div class="position-relative mb-2">
+                    <input type="password" id="register-password" name="password" class="form-input w-100"
+                        placeholder="Contraseña" required>
+                </div>
+
+                <!-- Confirmar contraseña -->
+                <input type="password" id="register-confirm-password" class="form-input mb-0 w-100"
+                    placeholder="Confirmar contraseña" required>
+
+                <!-- PEQUEÑA LEYENDA -->
+                <small class="text-white-50 ms-3 mb-4">Debe tener mínimo 6 caracteres, letras y números.</small>
+
+                <!-- Botón de enviar -->
+                <button type="submit" class="btn modal-btn w-100 mb-4">Registrarse</button>
+
+                <!-- MENSAJE -->
+                <small id="registerMsg" class="text-danger d-none"></small>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL SELECCIONAR IMAGEN -->
+<div class="modal fade" id="seleccionarImagenModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content px-4 text-white">
+            <!-- ENCABEZADO CON BOTÓN DE REGRESAR Y CERRAR -->
+            <div class="modal-header border-0 mt-2 mb-2 px-2 d-flex align-items-center justify-content-between">
+
+                <!-- BOTON DE REGRESAR -->
+                <a href="#" class="text-white" aria-label="Regresar" data-bs-toggle="modal"
+                    data-bs-target="#registerModal">
+                    <i class="bi bi-arrow-left fs-4"></i>
+                </a>
+
+                <!-- TITULO -->
+                <h5 class="m-0 text-center flex-grow-1">Selecciona una imagen de perfil</h5>
+
+                <!-- BOTON DE CERRAR -->
+                <a href="#" class="text-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <i class="bi bi-x fs-2"></i>
+                </a>
+            </div>
+
+            <!-- IMAGENES A ELEGIR -->
+            <div class="modal-body d-flex flex-wrap justify-content-center gap-2">
+                <img src="../public/Img/Perfil/Perfil/portrait1.png" data-id="1" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait2.png" data-id="2" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait3.png" data-id="3" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait4.png" data-id="4" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait5.png" data-id="5" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait6.png" data-id="6" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait7.png" data-id="7" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait8.png" data-id="8" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait9.png" data-id="9" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait10.png" data-id="10" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait11.png" data-id="11" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait12.png" data-id="12" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait13.png" data-id="13" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait14.png" data-id="14" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait15.png" data-id="15" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait16.png" data-id="16" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait17.png" data-id="17" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait18.png" data-id="18" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait19.png" data-id="19" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+                <img src="../public/Img/Perfil/Perfil/portrait20.png" data-id="20" onclick="selectImage(this)"
+                    class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SELECCIONAR IMAGEN -->
+<script>
+    function selectImage(imgElement) {
+        // Actualizar la imagen principal
+        const selectedImageSrc = imgElement.src;
+        document.getElementById('mainImage').src = selectedImageSrc;
+
+        // Guardar el ID de la imagen en el input hidden
+        const selectedId = imgElement.getAttribute('data-id');
+        document.getElementById('selectedImageId').value = selectedId;
+
+        // Cerrar el modal de selección
+        const modalSeleccion = bootstrap.Modal.getInstance(document.getElementById('seleccionarImagenModal'));
+        if (modalSeleccion) modalSeleccion.hide();
+
+        // Reabrir el modal de registro
+        const modalRegistro = new bootstrap.Modal(document.getElementById('registerModal'));
+        modalRegistro.show();
+    }
+</script>
+
+<!-- VERIFICAR CORREO -->
+<script>
+    async function verificarCorreo(email) {
+        const continuarBtn = document.getElementById("continuarBtn");
+        const mensajeError = document.getElementById("correoInvalido");
+
+        // Validación básica de formato
+        if (!email.includes("@") || email.length < 6) {
+            continuarBtn.disabled = true;
+            mensajeError.classList.remove("d-none");
+            mensajeError.textContent = "Correo inválido.";
+            return;
+        }
+
+        try {
+            const res = await fetch("../src/php/verificar_correo.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `email=${encodeURIComponent(email)}`
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                continuarBtn.disabled = false;
+                mensajeError.classList.add("d-none");
+            } else {
+                continuarBtn.disabled = true;
+                mensajeError.classList.remove("d-none");
+                mensajeError.textContent = "Este correo no está registrado.";
+            }
+        } catch (err) {
+            console.error("Error al verificar el correo:", err);
+            continuarBtn.disabled = true;
+            mensajeError.classList.remove("d-none");
+            mensajeError.textContent = "Error al validar el correo.";
+        }
+    }
+</script>
+
+<!-- COPIAR EMAIL -->
+<script>
+    const emailInput = document.getElementById("emailInput");
+    const continuarBtn = document.getElementById("continuarBtn");
+    const emailPreview = document.getElementById("emailPreview");
+
+    // Cuando se escribe en el campo de correo
+    emailInput.addEventListener("input", () => {
+        emailPreview.value = emailInput.value.trim();
+    });
+
+    // Cuando se hace clic en "Continuar"
+    continuarBtn.addEventListener("click", () => {
+        emailPreview.value = emailInput.value.trim();
+    });
+</script>
+
+<!-- LOGIN -->
+<script>
+    const loginBtn = document.getElementById("loginBtn");
+
+    loginBtn.addEventListener("click", async () => {
+        const emailPreview = document.getElementById("emailPreview");
+        const passwordInput = document.getElementById("passwordInput");
+        const rememberCheckbox = document.getElementById("rememberMeCheckbox");
+        const loginErrorMsg = document.getElementById("loginErrorMsg");
+
+        const email = emailPreview.value.trim();
+        const password = passwordInput.value.trim();
+        const recordar = rememberCheckbox.checked;
+
+        if (!email || !password) {
+            loginErrorMsg.textContent = "Por favor ingresa tu correo y contraseña.";
+            loginErrorMsg.classList.remove("d-none");
+            return;
+        }
+
+        try {
+            const response = await fetch("../src/php/login.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&recordar=${recordar}`
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                loginErrorMsg.classList.add("d-none");
+                localStorage.setItem("usuario_id", data.user_id);
+
+                // Oculta modal de login
+                const loginModal = bootstrap.Modal.getInstance(document.getElementById("loginModal"));
+                if (loginModal) loginModal.hide();
+            } else {
+                loginErrorMsg.textContent = data.message || "Correo o contraseña incorrectos.";
+                loginErrorMsg.classList.remove("d-none");
+            }
+        } catch (error) {
+            console.error("❌ Error al iniciar sesión:", error);
+            loginErrorMsg.textContent = "Error al conectar con el servidor.";
+            loginErrorMsg.classList.remove("d-none");
+        }
+    });
+
+</script>
+
+<!-- REGISTER -->
+<script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("register-user").value.trim();
+        const email = document.getElementById("register-email").value.trim();
+        const password = document.getElementById("register-password").value.trim();
+        const confirmPassword = document.getElementById("register-confirm-password").value.trim();
+        const fotoPerfilId = document.getElementById("selectedImageId").value;
+        const msg = document.getElementById("registerMsg");
+
+        if (!username || !email || !password || !confirmPassword) {
+            msg.textContent = "Por favor completa todos los campos.";
+            msg.classList.remove("d-none");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            msg.textContent = "Las contraseñas no coinciden.";
+            msg.classList.remove("d-none");
+            return;
+        }
+
+        try {
+            const response = await fetch("../src/php/register.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&foto_perfil_id=${fotoPerfilId}`
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Ocultar modal de registro
+                const registerModal = bootstrap.Modal.getInstance(document.getElementById("registerModal"));
+                if (registerModal) registerModal.hide();
+
+                // Guardar ID en localStorage
+                localStorage.setItem("usuario_id", data.user_id);
+
+                // Mostrar modal de registro exitoso
+                const registeredModalElement = document.getElementById("registeredModal");
+                const registeredModal = new bootstrap.Modal(registeredModalElement);
+                registeredModal.show();
+
+                // BOTÓN: Continuar = recargar página
+                document.getElementById("registeredContinuar").addEventListener("click", () => {
+                    location.reload();
+                });
+
+                // BOTÓN: Personalizar = redirigir
+                document.getElementById("registeredPersonalizar").addEventListener("click", () => {
+                    window.location.href = "personalizarPerfil.html";
+                });
+
+                // BOTÓN: Cerrar modal (ícono X) = recargar también
+                registeredModalElement.addEventListener("hidden.bs.modal", () => {
+                    location.reload();
+                });
+
+            } else {
+                msg.classList.remove("d-none");
+                msg.textContent = "❌ Error: " + data.message;
+            }
+
+        } catch (error) {
+            console.error("Error al registrar:", error);
+            msg.classList.remove("d-none");
+            msg.textContent = "❌ Error en la conexión con el servidor.";
+        }
+    });
+</script>
+
+<!-- IMAGEN -->
+<script>
+    const loggedModal = document.getElementById('loggedModal');
+
+    loggedModal.addEventListener('show.bs.modal', () => {
+        fetch('../src/php/get_user_profile.php')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const perfilId = data.id_foto_perfil;
+                    const imgSrc = `../public/Img/Perfil/Perfil/portrait${perfilId}.png`;
+                    document.getElementById('imagenPerfilUsuario').src = imgSrc;
+                } else {
+                    document.getElementById('imagenPerfilUsuario').src = '../public/Img/Perfil/Perfil/portrait1.png';
+                }
+            })
+            .catch(() => {
+                document.getElementById('imagenPerfilUsuario').src = '../public/Img/Perfil/Perfil/portrait1.png';
+            });
+    });
+</script>
+
+<!-- FAVORITOS -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const favoritosModal = document.getElementById('favoritos');
+        const favoritosContainer = favoritosModal.querySelector('.modal-content');
+
+        favoritosModal.addEventListener('show.bs.modal', () => {
+            fetch('src/php/obtener_favoritos.php')
+                .then(res => res.json())
+                .then(data => {
+                    // Elimina portadas anteriores (si recargas varias veces)
+                    favoritosContainer.querySelectorAll('.favorito-juego').forEach(el => el.remove());
+
+                    if (data.error) {
+                        const mensaje = document.createElement('p');
+                        mensaje.textContent = data.error;
+                        favoritosContainer.appendChild(mensaje);
+                        return;
+                    }
+
+                    data.forEach(juego => {
+                        const enlace = document.createElement('a');
+                        enlace.href = `juego.html?id=${juego.id}`;
+                        enlace.classList.add('favorito-juego');
+
+                        const imagen = document.createElement('img');
+                        imagen.src = juego.imagen;
+                        imagen.alt = juego.nombre;
+                        imagen.classList.add('img-fluid', 'mb-3');
+
+                        enlace.appendChild(imagen);
+                        favoritosContainer.appendChild(enlace);
+                    });
+                });
+        });
+    });
+</script>

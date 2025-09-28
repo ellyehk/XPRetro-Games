@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>XP Retro Game - Términos y Condiciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../public/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+  <!-- IMPORTAR ICONOS BOOTSTRAP -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <style>
+    .bg-back {
+      background-color: #432A6C;
+    }
+
+    .bg-head {
+      background-color: #311C54;
+    }
+
+    .bg-backgraund {
+      background-color: #16052E;
+    }
+  </style>
+</head>
+
+<body class="bg-backgraund text-white pt-4">
+  <!-- NAVBAR -->
+  <div id="header-placeholder"></div>
+
+  <div id="sidebar-placeholder"></div>
+
+  <!-- Encabezado -->
+  <div class="container bg-head bg-opacity-25 rounded-top p-3 mb-0 mt-5">
+    <div class="row align-items-center">
+      <div class="col-2 col-sm-1 text-start">
+        <img src="../public/Img/Logos/logo.png" alt="Logo XP Retro Game" class="img-fluid" style="max-width: 60px;">
+      </div>
+      <div class="col-10 col-sm-11 text-center">
+        <h2 class="mb-0">Términos y Condiciones</h2>
+        <small class="text-white-50">XP Retro Game</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="container bg-back bg-opacity-25 p-4 rounded-bottom mb-5">
+    <p class="text-start text-white-50">Última actualización: 11 de mayo de 2025</p>
+
+    <p>Bienvenido a XP RETRO GAME. Al acceder y utilizar nuestra plataforma, aceptas estar sujeto a los siguientes
+      términos y condiciones. Si no estás de acuerdo con alguno de ellos, por favor no utilices nuestros servicios.</p>
+
+    <h5 class="mt-4">1. Descripción del Servicio</h5>
+    <p>XP RETRO GAME ofrece una experiencia de videojuegos retro, inspirada en la era de Windows XP. Nuestros juegos
+      están disponibles en línea y pueden incluir funciones como rankings, perfiles de usuario, y partidas guardadas.
+    </p>
+
+    <h5 class="mt-4">2. Registro y Cuenta</h5>
+    <ul>
+      <li>Para guardar tu progreso o competir en rankings, puedes crear una cuenta.</li>
+      <li>Eres responsable de la seguridad de tu cuenta y contraseña.</li>
+      <li>No se permite compartir cuentas ni realizar suplantación de identidad.</li>
+    </ul>
+
+    <h5 class="mt-4">3. Uso Permitido</h5>
+    <ul>
+      <li>Solo puedes usar XP RETRO GAME para fines personales y no comerciales.</li>
+      <li>Está prohibido intentar vulnerar la seguridad de nuestra plataforma (incluyendo el uso indebido de Jenkins,
+        Docker o bases de datos).</li>
+      <li>Cualquier intento de hacer trampa o manipular juegos o puntuaciones puede llevar al baneo de tu cuenta.</li>
+    </ul>
+
+    <h5 class="mt-4">4. Propiedad Intelectual</h5>
+    <ul>
+      <li>Todos los contenidos (diseño, interfaz estilo XP, juegos, código) pertenecen a XP RETRO GAME o a sus
+        respectivos creadores.</li>
+      <li>No está permitido copiar, reproducir o redistribuir sin autorización.</li>
+    </ul>
+
+    <h5 class="mt-4">5. Responsabilidad</h5>
+    <ul>
+      <li>No garantizamos que la plataforma esté libre de errores o caídas ocasionales.</li>
+      <li>XP RETRO GAME no se hace responsable por daños indirectos derivados del uso de nuestra plataforma.</li>
+    </ul>
+
+    <h5 class="mt-4">6. Modificaciones</h5>
+    <p>Podemos actualizar estos Términos en cualquier momento. Te notificaremos si los cambios son sustanciales.</p>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- SCRIPT CARGA COMPONENTES Y NAVBAR DINÁMICO -->
+  <script>
+    function loadComponent(url, targetId, callback = null) {
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.innerHTML = html;
+
+            // Ejecutar scripts embebidos
+            const scripts = target.querySelectorAll("script");
+            scripts.forEach(oldScript => {
+              const newScript = document.createElement("script");
+              if (oldScript.src) {
+                newScript.src = oldScript.src;
+              } else {
+                newScript.textContent = oldScript.textContent;
+              }
+              document.body.appendChild(newScript);
+              oldScript.remove();
+            });
+
+            if (typeof callback === "function") callback();
+          }
+        });
+    }
+
+    // NAVBAR dinámico con avatar
+    loadComponent("../components/navbar.html", "header-placeholder", async () => {
+      try {
+        const res = await fetch("../src/php/verificar_token.php", {
+          credentials: "include"
+        });
+
+        const data = await res.json();
+        const container = document.getElementById("header-placeholder");
+
+        if (data.success) {
+          const template = document.getElementById("navbar-logged");
+          const clone = template.content.cloneNode(true);
+          const avatar = clone.querySelector("#navbar-avatar");
+          if (avatar) {
+            avatar.src = `../public/Img/Perfil/Perfil/portrait${data.foto_perfil}.png`;
+          }
+          container.appendChild(clone);
+
+          const modalAvatar = document.querySelector("#modal-avatar");
+          if (modalAvatar) {
+            modalAvatar.src = `../public/Img/Perfil/Perfil/portrait${data.foto_perfil}.png`;
+          }
+
+        } else {
+          const template = document.getElementById("navbar-nologin");
+          const clone = template.content.cloneNode(true);
+          container.appendChild(clone);
+        }
+
+        // Activar toggle sidebar
+        const menuToggle = document.getElementById("menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+        if (menuToggle && sidebar) {
+          menuToggle.addEventListener("click", e => {
+            e.preventDefault();
+            sidebar.classList.toggle("sidebar-hidden");
+          });
+        }
+
+      } catch (error) {
+        console.error("❌ Error al verificar sesión:", error);
+      }
+    });
+
+    // BOTÓN cerrar sesión
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "cerrarSesionBtn") {
+        fetch("../src/php/cerrar_sesion.php", {
+          method: "POST",
+          credentials: "include"
+        }).then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              localStorage.removeItem("user_id");
+              window.location.href = "../pages/index.html";
+            }
+          });
+      }
+    });
+
+    // SIDEBAR y FOOTER
+    loadComponent("../components/sidebar.html", "sidebar-placeholder", () => {
+      // CORREGIR redirección a contacto
+      document.querySelectorAll(".nav-link").forEach(link => {
+        const text = link.textContent.trim().toLowerCase();
+
+        if (text.includes("contáctanos") || text.includes("contactanos")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "../pages/contacto.html";
+          });
+        }
+
+        // Ir a INICIO
+        if (text.includes("inicio")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "../pages/index.html"; // Ajusta si estás en otra carpeta
+          });
+        }
+
+        // Abrir MODAL de FAVORITOS
+        if (text.includes("favoritos")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById("modalFavoritos"));
+            modal.show();
+          });
+        }
+      });
+    });
+
+    loadComponent("../components/footer.html", "footer-placeholder");
+  </script>
+  <!-- SCRIPT PARA IMPORTAR JS -->
+  <script src="../public/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

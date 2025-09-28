@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>XP Retro Game - Políticas de privacidad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../public/bootstrap-5.3.6-dist/css/bootstrap.min.css">
+  <!-- IMPORTAR ICONOS BOOTSTRAP -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<style>
+  .bg-back {
+    background-color: #432A6C;
+  }
+
+  .bg-head {
+    background-color: #311C54;
+  }
+
+  .bg-backgraund {
+    background-color: #16052E;
+  }
+</style>
+
+<body class="bg-backgraund text-white">
+
+  <!-- NAVBAR -->
+  <div id="header-placeholder"></div>
+  <div id="sidebar-placeholder" class="mb-5 pb-5"></div>
+
+  <!-- Encabezado -->
+  <div class="container bg-head bg-opacity-25 rounded-top p-3 mb-0">
+    <div class="row align-items-center">
+      <div class="col-2 col-sm-1 text-start">
+        <img src="../public/Img/Logos/logo.png" alt="Logo XP Retro Game" class="img-fluid" style="max-width: 60px;">
+      </div>
+      <div class="col-10 col-sm-11 text-center">
+        <h2 class="mb-0">Política de privacidad</h2>
+        <small class="text-white-50">XP Retro Game</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="container bg-back bg-opacity-25 p-4 rounded-bottom mb-5">
+    <p class="text-start text-white-50">Última actualización: 11 de mayo de 2025</p>
+
+    <p>En XP RETRO GAME respetamos tu privacidad. Esta política explica qué datos recopilamos, cómo los usamos y cómo
+      los protegemos.</p>
+
+    <p class="subtitle">1. Datos que Recopilamos</p>
+    <ul>
+      <li>Nombre de usuario y correo electrónico (si te registras).</li>
+      <li>Puntuaciones, progreso en juegos, historial de partidas.</li>
+      <li>Información técnica (tipo de dispositivo, sistema operativo, navegador).</li>
+    </ul>
+
+    <p class="subtitle">2. Uso de la Información</p>
+    <ul>
+      <li>Para mantener tu cuenta y tus partidas guardadas.</li>
+      <li>Para generar rankings y estadísticas.</li>
+      <li>Para mejorar el rendimiento de la plataforma usando herramientas como Jenkins y Docker.</li>
+    </ul>
+
+    <p class="subtitle">3. Cookies</p>
+    <ul>
+      <li>Recordar tu sesión.</li>
+      <li>Analizar el uso de la plataforma y mejorarla.</li>
+    </ul>
+
+    <p class="subtitle">4. Compartir Información</p>
+    <ul>
+      <li>No compartimos tu información con terceros con fines comerciales.</li>
+      <li>Podemos compartir datos técnicos con proveedores de infraestructura (como servicios de alojamiento o
+        análisis).</li>
+    </ul>
+
+    <p class="subtitle">5. Seguridad</p>
+    <p>Utilizamos tecnologías modernas (incluyendo Dockerización segura y control de versiones con Jenkins) para
+      proteger tu información.</p>
+
+    <p class="subtitle">6. Tus Derechos</p>
+    <p>Puedes solicitar acceso, modificación o eliminación de tus datos escribiéndonos al correo de contacto.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- SCRIPT CARGA COMPONENTES Y NAVBAR DINÁMICO -->
+  <script>
+    function loadComponent(url, targetId, callback = null) {
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.innerHTML = html;
+
+            // Ejecutar scripts embebidos
+            const scripts = target.querySelectorAll("script");
+            scripts.forEach(oldScript => {
+              const newScript = document.createElement("script");
+              if (oldScript.src) {
+                newScript.src = oldScript.src;
+              } else {
+                newScript.textContent = oldScript.textContent;
+              }
+              document.body.appendChild(newScript);
+              oldScript.remove();
+            });
+
+            if (typeof callback === "function") callback();
+          }
+        });
+    }
+
+    // NAVBAR dinámico con avatar
+    loadComponent("../components/navbar.html", "header-placeholder", async () => {
+      try {
+        const res = await fetch("../src/php/verificar_token.php", {
+          credentials: "include"
+        });
+
+        const data = await res.json();
+        const container = document.getElementById("header-placeholder");
+
+        if (data.success) {
+          const template = document.getElementById("navbar-logged");
+          const clone = template.content.cloneNode(true);
+          const avatar = clone.querySelector("#navbar-avatar");
+          if (avatar) {
+            avatar.src = `../public/Img/Perfil/Perfil/portrait${data.foto_perfil}.png`;
+          }
+          container.appendChild(clone);
+
+          const modalAvatar = document.querySelector("#modal-avatar");
+          if (modalAvatar) {
+            modalAvatar.src = `../public/Img/Perfil/Perfil/portrait${data.foto_perfil}.png`;
+          }
+
+        } else {
+          const template = document.getElementById("navbar-nologin");
+          const clone = template.content.cloneNode(true);
+          container.appendChild(clone);
+        }
+
+        // Activar toggle sidebar
+        const menuToggle = document.getElementById("menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+        if (menuToggle && sidebar) {
+          menuToggle.addEventListener("click", e => {
+            e.preventDefault();
+            sidebar.classList.toggle("sidebar-hidden");
+          });
+        }
+
+      } catch (error) {
+        console.error("❌ Error al verificar sesión:", error);
+      }
+    });
+
+    // BOTÓN cerrar sesión
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "cerrarSesionBtn") {
+        fetch("../src/php/cerrar_sesion.php", {
+          method: "POST",
+          credentials: "include"
+        }).then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              localStorage.removeItem("user_id");
+              window.location.href = "../pages/index.html";
+            }
+          });
+      }
+    });
+
+    // SIDEBAR y FOOTER
+    loadComponent("../components/sidebar.html", "sidebar-placeholder", () => {
+      // CORREGIR redirección a contacto
+      document.querySelectorAll(".nav-link").forEach(link => {
+        const text = link.textContent.trim().toLowerCase();
+
+        if (text.includes("contáctanos") || text.includes("contactanos")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "../pages/contacto.html";
+          });
+        }
+
+        // Ir a INICIO
+        if (text.includes("inicio")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "../pages/index.html"; // Ajusta si estás en otra carpeta
+          });
+        }
+
+        // Abrir MODAL de FAVORITOS
+        if (text.includes("favoritos")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById("modalFavoritos"));
+            modal.show();
+          });
+        }
+      });
+    });
+
+    loadComponent("../components/footer.html", "footer-placeholder");
+  </script>
+
+  <!-- SCRIPT PARA IMPORTAR JS -->
+  <script src="../public/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

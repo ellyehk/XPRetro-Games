@@ -1,0 +1,135 @@
+.albert-sans {
+  font-family: "Albert Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Puedes usar 400, 500, 700 según lo que importaste */
+  font-style: normal;
+}
+
+body {
+  background-color: #211138;
+}
+
+.button-bg {
+  background-color: #4715a3;
+  color: white;
+  border: #4715a3;
+  border-radius: 20px;
+  width: auto;
+}
+
+button:hover {
+  color: #cdadff !important;
+}
+
+.game-card {
+  background-color: #362650;
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+}
+
+.game-cover img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-family: "albert-sans", sans-serif;
+  font-weight: 200;
+}
+
+.info-label {
+  font-weight: 700;
+  font-family: "albert-sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "albert-sans", sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+p {
+  font-family: "albert-sans", sans-serif;
+  font-weight: 400;
+  color: white;
+}
+
+.comment-box {
+  background-color: #3626506d;
+  border: 1px solid #b4adbd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.comment-input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  resize: none;
+  outline: none;
+}
+
+.comment-toolbar {
+  border-top: 2px solid #b4adbd;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-toolbar .btn-format {
+  color: white;
+  font-weight: bold;
+  border: none;
+  background: none;
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-header {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-actions .btn {
+  background-color: #6a35f2;
+  color: white;
+  margin-right: 10px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+}
+
+.comment-actions .bi {
+  margin-right: 5px;
+}
+
+.comment-reply {
+  margin-left: 50px;
+  border-left: 2px solid #b4adbd;
+  padding-left: 15px;
+}
+
+.menu-bar {
+  font-family: "albert-sans", sans-serif;
+  font-weight: 700;
+  color: white;
+}

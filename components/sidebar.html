@@ -1,0 +1,133 @@
+<style>
+  .sidebar {
+    position: fixed;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    width: 46px;
+    height: auto;
+    /* O puedes mantener una altura controlada si lo prefieres */
+    background: #211138;
+    border-radius: 16px;
+    transition: width 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+    overflow: hidden;
+    z-index: 999;
+    color: black;
+  }
+
+
+  .sidebar:hover {
+    width: 160px;
+  }
+
+  .sidebar.collapsed .nav-label,
+  .sidebar:not(:hover) .nav-label {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 0 2px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+
+  .nav-label {
+    white-space: nowrap;
+    color: black;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar.sidebar-hidden {
+    width: 0 !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .secondary-nav {
+    margin-bottom: 30px;
+  }
+</style>
+
+<aside class="sidebar collapsed sidebar-hidden">
+  <nav class="sidebar-nav">
+    <ul class="nav-list primary-nav">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon bi-house"></span>
+          <span class="nav-label">Inicio</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" id="favoritosBtn" class="nav-link">
+          <span class="nav-icon bi-star"></span>
+          <span class="nav-label">Favoritos</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="nav-icon bi-people"></span>
+          <span class="nav-label">Multijugador</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="nav-icon bi-fire"></span>
+          <span class="nav-label">Destacados</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="nav-icon bi-dribbble"></span>
+          <span class="nav-label">Deportes</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span class="nav-icon bi-circle"></span>
+          <span class="nav-label">Billar</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="nav-list secondary-nav">
+      <li class="nav-item">
+        <a href="contacto.html" class="nav-link">
+          <span class="nav-icon bi-envelope"></span>
+          <span class="nav-label">Contáctanos</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

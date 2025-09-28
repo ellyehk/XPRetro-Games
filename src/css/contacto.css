@@ -1,0 +1,53 @@
+.albert-sans {
+  font-family: "Albert Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Puedes usar 400, 500, 700 según lo que importaste */
+  font-style: normal;
+}
+
+body {
+  background: #211138;
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "albert-sans", sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
+p {
+  font-family: "albert-sans", sans-serif;
+  font-weight: 200;
+  color: white;
+}
+
+.button-bg {
+  background-color: #4715a3;
+  color: white;
+  border-radius: 20px;
+  border-color: #4715a3;
+}
+
+textarea {
+  min-width: 100px;
+  height: 60px;
+  border-radius: 15px;
+}
+
+.icon-contacto {
+  color: white;
+  font-size: 4rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.icon-contacto:hover {
+  transform: scale(1.2);
+  color: #a27dfc; /* Color morado claro al hacer hover */
+}
+

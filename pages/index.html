@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- IMPORTAR BOOTSTRAP -->
+    <link rel="stylesheet" href="../public/bootstrap-5.3.6-dist/css/bootstrap.min.css" />
+    <!-- IMPORTAR ICONOS BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <!-- IMPORTAR HOJA DE ESTILOS PARA EL INDEX -->
+    <link rel="stylesheet" href="../src/css/index.css" />
+    <!-- ICONO LOGO -->
+    <link rel="shortcut icon" href="../public/Img/Logos/logo.png" type="image/png">
+    <title>XP RETRO GAME</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <div id="header-placeholder"></div>
+    <div id="sidebar-placeholder" class="mb-5"></div>
+
+    <!-- NEWS -->
+    <div class="container">
+        <div id="carouselNews" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="carousel-item-custom">
+                        <div class="carousel-text ps-5">
+                            <h5>Pac-Man fue diseñado para atraer a las mujeres</h5>
+                            <p>Toru Iwatani, su creador, quería un juego menos violento y más amigable que los típicos
+                                shooters espaciales. Por eso, creó un personaje que comía puntos y frutas, y se inspiró
+                                en una pizza con una rebanada faltante.</p>
+                        </div>
+                        <img src="../public/Img/carrucel/pacman.png" class="carousel-img" alt="Pac-Man">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-item-custom">
+                        <div class="carousel-text ps-5">
+                            <h5>Space Invaders se volvía más difícil por accidente</h5>
+                            <p>A medida que destruías enemigos, el procesador tenía que manejar menos elementos, así que
+                                el juego se aceleraba. Lo que hoy es un “modo difícil” fue un efecto no intencional del
+                                hardware.</p>
+                        </div>
+                        <img src="../public/Img/carrucel/space.png" class="carousel-img" alt="Space Invaders">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-item-custom">
+                        <div class="carousel-text ps-5">
+                            <h5>XP venía con el Pinball 3D oculto</h5>
+                            <p>El clásico 3D Pinball: Space Cadet venía de serie y se volvió icónico, aunque desapareció
+                                en versiones futuras por problemas de compatibilidad.</p>
+                        </div>
+                        <img src="../public/Img/carrucel/pinball.png" class="carousel-img" alt="Pinball XP">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-item-custom">
+                        <div class="carousel-text ps-5">
+                            <h5>Donkey Kong fue un “accidente” legendario</h5>
+                            <p>Shigeru Miyamoto quería hacer un juego de Popeye, pero no obtuvo los derechos. Así que
+                                creó personajes nuevos: Mario (entonces Jumpman), Donkey Kong y Pauline. ¡Así nació
+                                Mario!</p>
+                        </div>
+                        <img src="../public/Img/carrucel/donkey.png" class="carousel-img" alt="Donkey Kong">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JUEGOS -->
+    <div class="container">
+        <div class="container carousel-recomendados">
+            <h4>Recomendado</h4>
+            <!-- Botones -->
+            <button class="btn-carousel btn-left" onclick="scrollCarousel(-1)">‹</button>
+            <button class="btn-carousel btn-right" onclick="scrollCarousel(1)">›</button>
+
+            <div class="recomendado-carousel" id="recomendadoCarousel">
+                <!-- GRUPO 1 -->
+                <div class="grupo">
+                    <div class="grande">
+                        <img src="../public/Img/Portada/Doom.png" alt="Doom">
+                    </div>
+                    <div class="chicos">
+                        <div class="chico"><img src="../public/Img/Portada/donkeyKong.jpg" alt="Far Cry 5"></div>
+                        <div class="chico"><img src="../public/Img/Portada/superFrog.jpg" alt="Battlefront II"></div>
+                    </div>
+                </div>
+
+                <!-- GRUPO 2 -->
+                <div class="grupo">
+                    <div class="grande">
+                        <img src="../public/Img/Portada/galaga.png" alt="RollerCoaster Tycoon 2">
+                    </div>
+                    <div class="chicos">
+                        <div class="chico"><img src="../public/Img/Portada/GTA.png" alt="SimCity 4"></div>
+                        <div class="chico"><img src="../public/Img/Portada/mortalKombat.jpg" alt="The Sims 2"></div>
+                    </div>
+                </div>
+
+                <!-- GRUPO 3 -->
+                <div class="grupo">
+                    <div class="grande">
+                        <img src="../public/Img/Portada/needForSpeed.jpg" alt="Age of Empires II">
+                    </div>
+                    <div class="chicos">
+                        <div class="chico"><img src="../public/Img/Portada/pacman.jpg" alt="Doom"></div>
+                        <div class="chico"><img src="../public/Img/Portada/caissa.jpg" alt="Quake"></div>
+                    </div>
+                </div>
+
+                <!-- GRUPO 4 -->
+                <div class="grupo">
+                    <div class="grande">
+                        <img src="../public/Img/Portada/snowBros.jpg" alt="Command and Conquer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JUEGOS DESTACADOS -->
+    <div class="container my-5">
+        <h4 class="mb-4 text-center">Juegos destacados</h4>
+        <div class="row g-3 justify-content-center gallery">
+            <div class="col-6 col-sm-4 col-md-3">
+                <a href="juego.html?id=1">
+                    <img src="../public/Img/posterJuegos/poster1.png" alt="Juego 1" class="img-fluid">
+                </a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <a href="juego.html?id=2">
+                    <img src="../public/Img/posterJuegos/poster2.png" alt="Doom" class="img-fluid">
+                </a>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <img src="../public/Img/posterJuegos/poster8.png" alt="Donkey Kong" class="img-fluid">
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <img src="../public/Img/posterJuegos/poster5.png" alt="Mortal Kombat" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLA DE RANKING -->
+    <div class="container-fluid emphasis-bg pt-4">
+        <h4 class="ps-md-4 ps-0 ms-md-5 ms-0 mb-3 text-center text-md-start">Ranking Jugadores</h4>
+        <h5 class="mb-0 text-center">Top 10 jugadores</h5>
+
+        <!-- PODIO -->
+        <div class="container podium-container mt-5 mb-0 d-none d-md-block">
+            <div id="podio" class="row justify-content-center align-items-end min-vh-50"></div>
+        </div>
+
+        <!-- TABLA -->
+        <div class="container mt-2 pb-5 table-contorn">
+            <div class="table-container p-4">
+                <table class="table table-borderless text-center table-bg text-white mb-0">
+                    <thead>
+                        <tr class="border-bottom custom-border">
+                            <th>#No</th>
+                            <th>Usuario</th>
+                            <th>Horas jugadas</th>
+                            <th>Rango</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-ranking"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        function loadComponent(url, targetId, callback = null) {
+            fetch(url)
+                .then(res => res.text())
+                .then(html => {
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.innerHTML = html;
+
+                        // Ejecutar scripts embebidos
+                        const scripts = target.querySelectorAll("script");
+                        scripts.forEach(oldScript => {
+                            const newScript = document.createElement("script");
+                            if (oldScript.src) {
+                                newScript.src = oldScript.src;
+                            } else {
+                                newScript.textContent = oldScript.textContent;
+                            }
+                            document.body.appendChild(newScript);
+                            oldScript.remove();
+                        });
+
+                        if (typeof callback === "function") callback();
+                    }
+                });
+        }
+
+        // NAVBAR dinámico con avatar
+        loadComponent("../components/navbar.html", "header-placeholder", async () => {
+            try {
+                const res = await fetch("../src/php/verificar_token.php", {
+                    credentials: "include"
+                });
+
+                const data = await res.json();
+                const container = document.getElementById("header-placeholder");
+
+                if (data.success) {
+                    const template = document.getElementById("navbar-logged");
+                    const clone = template.content.cloneNode(true);
+                    const avatar = clone.querySelector("#navbar-avatar");
+                    if (avatar) {
+                        avatar.src = `../public/Img/Perfil/Perfil/portrait${data.foto_perfil}.png`;
+                    }
+                    container.appendChild(clone);
+
+                    const modalAvatar = document.querySelector("#modal-avatar");
+                    if (modalAvatar) {
+                        modalAvatar.src = `../public/Img/Perfil/Perfil/portrait${data.foto_perfil}.png`;
+                    }
+
+                } else {
+                    const template = document.getElementById("navbar-nologin");
+                    const clone = template.content.cloneNode(true);
+                    container.appendChild(clone);
+                }
+
+                // Activar toggle sidebar
+                const menuToggle = document.getElementById("menu-toggle");
+                const sidebar = document.querySelector(".sidebar");
+                if (menuToggle && sidebar) {
+                    menuToggle.addEventListener("click", e => {
+                        e.preventDefault();
+                        sidebar.classList.toggle("sidebar-hidden");
+                    });
+                }
+
+            } catch (error) {
+                console.error("❌ Error al verificar sesión:", error);
+            }
+        });
+
+        // BOTÓN cerrar sesión
+        document.addEventListener("click", function (e) {
+            if (e.target && e.target.id === "cerrarSesionBtn") {
+                fetch("../src/php/cerrar_sesion.php", {
+                    method: "POST",
+                    credentials: "include"
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            localStorage.removeItem("user_id");
+                            window.location.href = "../pages/index.html";
+                        }
+                    });
+            }
+        });
+
+        // SIDEBAR y FOOTER
+        loadComponent("../components/sidebar.html", "sidebar-placeholder", () => {
+            // CORREGIR redirección a contacto
+            document.querySelectorAll(".nav-link").forEach(link => {
+                const text = link.textContent.trim().toLowerCase();
+
+                if (text.includes("contáctanos") || text.includes("contactanos")) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        window.location.href = "../pages/contacto.html";
+                    });
+                }
+
+                // Ir a INICIO
+                if (text.includes("inicio")) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        window.location.href = "../pages/index.html"; // Ajusta si estás en otra carpeta
+                    });
+                }
+
+                // Abrir MODAL de FAVORITOS
+                if (text.includes("favoritos")) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const modal = new bootstrap.Modal(document.getElementById("modalFavoritos"));
+                        modal.show();
+                    });
+                }
+            });
+        });
+
+        loadComponent("../components/footer.html", "footer-placeholder");
+    </script>
+
+    <!-- CARRUSEL -->
+    <script>
+        //Carrusel dos botones
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('recomendadoCarousel');
+            const scrollAmount = 360; // Ajusta según tamaño de cada grupo
+            carousel.scrollBy({
+                left: scrollAmount * direction,
+                behavior: 'smooth'
+            });
+        }
+        const juegos = [
+            {
+                grande: "../public/Img/Portada/Doom.png",
+                chicos: [
+                    "../public/Img/Portada/donkeyKong.jpg",
+                    "../public/Img/Portada/superFrog.jpg"
+                ]
+            },
+            {
+                grande: "../public/Img/Portada/galaga.png",
+                chicos: [
+                    "../public/Img/Portada/GTA.png",
+                    "../public/Img/Portada/mortalKombat.jpg"
+                ]
+            },
+            {
+                grande: "../public/Img/Portada/needForSpeed.jpg",
+                chicos: [
+                    "../public/Img/Portada/pacman.jpg",
+                    "../public/Img/Portada/caissa.jpg"
+                ]
+            },
+            {
+                grande: "../public/Img/Portada/snowBros.jpg",
+                chicos: []
+            }
+        ];
+
+        const carousel = document.getElementById("recomendadoCarousel");
+
+        function renderCarousel() {
+            carousel.innerHTML = "";
+            juegos.forEach(grupo => {
+                const grupoDiv = document.createElement("div");
+                grupoDiv.className = "grupo";
+
+                const grandeDiv = document.createElement("div");
+                grandeDiv.className = "grande";
+                const grandeImg = document.createElement("img");
+                grandeImg.src = grupo.grande;
+                grandeImg.alt = "Juego grande";
+                grandeDiv.appendChild(grandeImg);
+                grupoDiv.appendChild(grandeDiv);
+
+                if (grupo.chicos && grupo.chicos.length > 0) {
+                    const chicosDiv = document.createElement("div");
+                    chicosDiv.className = "chicos";
+
+                    grupo.chicos.forEach(chicoSrc => {
+                        const chicoDiv = document.createElement("div");
+                        chicoDiv.className = "chico";
+                        const chicoImg = document.createElement("img");
+                        chicoImg.src = chicoSrc;
+                        chicoImg.alt = "Juego chico";
+                        chicoDiv.appendChild(chicoImg);
+                        chicosDiv.appendChild(chicoDiv);
+                    });
+
+                    grupoDiv.appendChild(chicosDiv);
+                }
+
+                carousel.appendChild(grupoDiv);
+            });
+        }
+
+        function scrollCarousel(direction) {
+            const scrollAmount = 360;
+            carousel.scrollBy({
+                left: scrollAmount * direction,
+                behavior: "smooth"
+            });
+        }
+
+        // Duplicar contenido para simular carrusel infinito visual
+        function renderInfiniteCarousel() {
+            renderCarousel();
+            // Repetimos los mismos grupos
+            juegos.forEach(grupo => {
+                const grupoDiv = document.createElement("div");
+                grupoDiv.className = "grupo";
+
+                const grandeDiv = document.createElement("div");
+                grandeDiv.className = "grande";
+                const grandeImg = document.createElement("img");
+                grandeImg.src = grupo.grande;
+                grandeImg.alt = "Juego grande";
+                grandeDiv.appendChild(grandeImg);
+                grupoDiv.appendChild(grandeDiv);
+
+                if (grupo.chicos && grupo.chicos.length > 0) {
+                    const chicosDiv = document.createElement("div");
+                    chicosDiv.className = "chicos";
+
+                    grupo.chicos.forEach(chicoSrc => {
+                        const chicoDiv = document.createElement("div");
+                        chicoDiv.className = "chico";
+                        const chicoImg = document.createElement("img");
+                        chicoImg.src = chicoSrc;
+                        chicoImg.alt = "Juego chico";
+                        chicoDiv.appendChild(chicoImg);
+                        chicosDiv.appendChild(chicoDiv);
+                    });
+
+                    grupoDiv.appendChild(chicosDiv);
+                }
+
+                carousel.appendChild(grupoDiv);
+            });
+        }
+
+        renderInfiniteCarousel();
+        // Cargar componentes
+        function loadComponent(url, targetId, callback = null) {
+            fetch(url)
+                .then(res => res.text())
+                .then(html => {
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.innerHTML = html;
+                        if (typeof callback === 'function') callback();
+                    }
+                });
+        }
+    </script>
+
+    <!-- JS RANKING -->
+    <script>
+        fetch('../src/php/ranking.php')
+            .then(res => res.json())
+            .then(data => {
+                if (!Array.isArray(data) || data.length < 3) {
+                    document.getElementById('tabla-ranking').innerHTML = '<tr><td colspan="4">No hay suficientes datos</td></tr>';
+                    return;
+                }
+
+                const podio = document.getElementById('podio');
+                const tabla = document.getElementById('tabla-ranking');
+
+                const colores = ['silver', 'gold', 'bronze'];
+                const clases = ['podium-second', 'podium-first', 'podium-third'];
+                const ordenVisual = [1, 0, 2]; // 2do, 1ro, 3ro
+
+                let podiumHTML = '';
+
+                // Generar HTML del podio para 3 jugadores
+                for (let pos = 0; pos < 3; pos++) {
+                    const i = ordenVisual[pos];
+                    const user = data[i];
+
+                    podiumHTML += `
+                    <div class="col-4 text-center d-flex flex-column align-items-center ${clases[pos]}">                        
+                        <img src="../public/Img/Perfil/Perfil/portrait${user.Id_foto_perfil}.png"
+                            class="ranking-img mb-2"
+                            alt="Perfil de ${user.usuario}">
+                            <h5 class="text-white mt-3 mb-1">@${user.usuario}</h5>
+                        <p class="text-white mb-0">${user.rango}</p>
+                        <p class="text-white small">${user.Horas_jugadas} horas jugadas</p>
+                        <div class="podium-base ${colores[pos]}"></div>
+                    </div>
+                `;
+                }
+
+                podio.innerHTML = podiumHTML;
+
+                // Resto del top 10 (4° al 10°)
+                for (let i = 3; i < data.length; i++) {
+                    const user = data[i];
+                    tabla.innerHTML += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>@${user.usuario}</td>
+                        <td>${user.Horas_jugadas} horas</td>
+                        <td>${user.rango}</td>
+                    </tr>
+                `;
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar el ranking:', error);
+                document.getElementById('tabla-ranking').innerHTML = '<tr><td colspan="4">Error al cargar datos</td></tr>';
+            });
+    </script>
+
+    <!-- Bootstrap Bundle -->
+    <script src="../public/bootstrap-5.3.6-dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
